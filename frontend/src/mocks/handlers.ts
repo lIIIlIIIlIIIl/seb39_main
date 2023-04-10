@@ -4,6 +4,7 @@
 import { rest } from "msw";
 
 import { DetailType } from "../types/post";
+import { popularData } from "./data";
 import {
   fullData,
   responseForPage1,
@@ -35,6 +36,10 @@ const users: user = [
 const productData: DetailType[] = [];
 
 const handlers = [
+  rest.get("/popular", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(popularData));
+  }),
+
   rest.get("https://groupbuying/api/", (req, res, ctx) => {
     const pageNumber = req.url.searchParams.get("page");
     let response;

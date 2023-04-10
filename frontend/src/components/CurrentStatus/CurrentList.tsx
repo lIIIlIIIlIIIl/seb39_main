@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import styled from "styled-components";
 
-import { Data } from "../../MSW/data";
+import { Data } from "../../mocks/data";
 import CurrentItem from "./CurrentItem";
 
 const Container = styled.div`
