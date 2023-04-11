@@ -13,7 +13,7 @@ import * as S from "./style";
 
 const Header = () => {
   //TODO: 임시 로그인 상태 변수
-  const isLogin = useAppSelector((state) => state.login.isLogin);
+  const isLogin = useAppSelector(state => state.login.isLogin);
   const location = useLocation();
 
   return (
@@ -24,7 +24,7 @@ const Header = () => {
             <S.LeftBox>
               <S.Logo>
                 <Link to="/">
-                  <S.LogoImage src={logo} />
+                  <S.LogoImage src={logo} alt="logo image" />
                 </Link>
               </S.Logo>
               <S.MenuBox>

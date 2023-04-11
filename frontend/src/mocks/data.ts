@@ -159,7 +159,7 @@ export const popularData = [
     goal_num: 30,
     state_num: 15,
     image_uri:
-      "https://images.pexels.com/photos/5274793/pexels-photo-5274793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/5274793/pexels-photo-5274793.jpeg",
     goal_price: 100000,
     state_price: 50000,
     title: "값싸고 좋은 텀블러!",
@@ -178,7 +178,7 @@ export const popularData = [
     goal_num: 30,
     state_num: 15,
     image_uri:
-      "https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg",
     goal_price: 100000,
     state_price: 50000,
     title: "유기농 녹차로 만든 녹차가루",
@@ -197,7 +197,7 @@ export const popularData = [
     goal_num: 30,
     state_num: 15,
     image_uri:
-      "https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg",
     goal_price: 100000,
     state_price: 50000,
     title: "OOO 로션 단체로 구매하실 분!",
@@ -216,7 +216,7 @@ export const popularData = [
     goal_num: 30,
     state_num: 15,
     image_uri:
-      "https://media.istockphoto.com/id/700235270/ko/%EC%82%AC%EC%A7%84/%EB%B8%94%EB%A3%A8-%EC%95%BC%EC%99%B8-%EC%88%98%EC%98%81%EC%9E%A5%EC%97%90%EC%84%9C-%EC%97%AC%EB%A6%84-%EB%85%B8%EB%9E%80%EC%83%89-%EC%8D%AC%EB%B8%94%EB%A1%9D-%ED%81%AC%EB%A6%BC.jpg?b=1&s=612x612&w=0&k=20&c=6rx4mo1v4C2Zo7QnfUPTu6AisIZOAcDbE7czwoc6jqs=",
+      "https://images.pexels.com/photos/1029896/pexels-photo-1029896.jpeg",
     goal_price: 100000,
     state_price: 50000,
     title: "선크림 함께 구매하실 분!",
@@ -235,11 +235,11 @@ export const popularData = [
     goal_num: 30,
     state_num: 15,
     image_uri:
-      "https://media.istockphoto.com/id/936376048/ko/%EC%82%AC%EC%A7%84/%EC%95%BC%EA%B5%AC-%EB%AA%A8%EC%9E%90-%EB%B8%94%EB%A3%A8-%EC%BB%AC%EB%9F%AC-%ED%81%B4%EB%A1%9C%EC%A6%88%EC%97%85-%EC%A0%84%EB%A9%B4-%EB%B3%B4%EA%B8%B0.jpg?b=1&s=612x612&w=0&k=20&c=G2A7lQfxUJOCkYoe0eyGC9b_Vf2E1VJwY5ObJZhNbx4=",
+      "https://images.pexels.com/photos/8052207/pexels-photo-8052207.jpeg",
     goal_price: 100000,
     state_price: 50000,
-    title: "파란색 야구 모자",
-    body: "이쁜 야구 모자 구입하실 분~",
+    title: "파란색 모자",
+    body: "이쁜 파란색 모자 구입하실 분~",
     generated_time: "2023-04-03",
     ended_time: "2023-05-27",
     status: "proceeding",
@@ -254,7 +254,7 @@ export const popularData = [
     goal_num: 30,
     state_num: 15,
     image_uri:
-      "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg",
     goal_price: 100000,
     state_price: 50000,
     title: "청바지 싸게 구매합시다!",
@@ -273,7 +273,7 @@ export const popularData = [
     goal_num: 30,
     state_num: 15,
     image_uri:
-      "https://images.pexels.com/photos/5725562/pexels-photo-5725562.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/5725562/pexels-photo-5725562.jpeg",
     goal_price: 100000,
     state_price: 50000,
     title: "무선 이어폰!!!",
@@ -292,7 +292,7 @@ export const popularData = [
     goal_num: 30,
     state_num: 15,
     image_uri:
-      "https://images.pexels.com/photos/1878821/pexels-photo-1878821.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/1878821/pexels-photo-1878821.jpeg",
     goal_price: 100000,
     state_price: 50000,
     title: "모자 구입하실 분~",
@@ -311,7 +311,7 @@ export const popularData = [
     goal_num: 30,
     state_num: 15,
     image_uri:
-      "https://images.pexels.com/photos/3761020/pexels-photo-3761020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/3761020/pexels-photo-3761020.jpeg",
     goal_price: 100000,
     state_price: 50000,
     title: "무선 해드셋",
@@ -330,7 +330,7 @@ export const popularData = [
     goal_num: 30,
     state_num: 15,
     image_uri:
-      "https://images.pexels.com/photos/7741801/pexels-photo-7741801.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/7741801/pexels-photo-7741801.jpeg",
     goal_price: 100000,
     state_price: 50000,
     title: "소고기",
@@ -349,7 +349,7 @@ export const popularData = [
     goal_num: 30,
     state_num: 15,
     image_uri:
-      "https://images.pexels.com/photos/1795567/pexels-photo-1795567.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/1795567/pexels-photo-1795567.jpeg",
     goal_price: 100000,
     state_price: 50000,
     title: "시리얼",
