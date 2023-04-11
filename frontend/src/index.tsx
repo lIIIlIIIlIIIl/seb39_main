@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+import { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
@@ -23,14 +24,16 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <BrowserRouter>
-    <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <GlobalModal />
-          <App />
-        </ThemeProvider>
-      </Provider>
-    </QueryClientProvider>
+    <Suspense fallback={<div>Loading...</div>}>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <GlobalModal />
+            <App />
+          </ThemeProvider>
+        </Provider>
+      </QueryClientProvider>
+    </Suspense>
   </BrowserRouter>
 );

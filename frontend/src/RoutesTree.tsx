@@ -1,21 +1,22 @@
+import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Main from "./Main";
-import Category from "./pages/Category";
-import Chat from "./pages/Chat";
-import CurrentStatus from "./pages/CurrentStatus";
-import Detail from "./pages/Detail";
-import Edit from "./pages/Edit";
-import Favorite from "./pages/Favorite";
-import GroupBuying from "./pages/GroupBuying";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import New from "./pages/New";
-import NotFound from "./pages/NotFound";
-import Participate from "./pages/Participate";
-import Password from "./pages/Password";
-import SignUp from "./pages/SignUp";
-import User from "./pages/User";
+const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login"));
+const New = lazy(() => import("./pages/New"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Participate = lazy(() => import("./pages/Participate"));
+const Password = lazy(() => import("./pages/Password"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const User = lazy(() => import("./pages/User"));
+const Category = lazy(() => import("./pages/Category"));
+const Chat = lazy(() => import("./pages/Chat"));
+const CurrentStatus = lazy(() => import("./pages/CurrentStatus"));
+const Detail = lazy(() => import("./pages/Detail"));
+const Edit = lazy(() => import("./pages/Edit"));
+const Favorite = lazy(() => import("./pages/Favorite"));
+const GroupBuying = lazy(() => import("./pages/GroupBuying"));
 
 const RoutesTree = () => {
   return (
