@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
+import { BiDotsVerticalRounded } from "@react-icons/all-files/bi/BiDotsVerticalRounded";
 import { useRef } from "react";
-import { BiDotsVerticalRounded } from "react-icons/bi";
 import styled from "styled-components";
 
 import Button from "../../../common/Button/ButtonForm";
@@ -21,8 +22,8 @@ const ButtonBox = styled.div`
   position: absolute;
   bottom: -5.7em;
   left: -2.4em;
-  background-color: ${(props) => props.theme.colors.white000};
-  border: 1px solid ${(props) => props.theme.colors.black300};
+  background-color: ${props => props.theme.colors.white000};
+  border: 1px solid ${props => props.theme.colors.black300};
   border-bottom: transparent;
   border-radius: 4px;
 `;
@@ -30,18 +31,18 @@ const ButtonBox = styled.div`
 const ButtonItem = styled(Button)`
   width: 70px;
   height: 30px;
-  font-size: ${(props) => props.theme.fontSize.size15};
-  background: ${(props) => props.theme.colors.white000};
+  font-size: ${props => props.theme.fontSize.size15};
+  background: ${props => props.theme.colors.white000};
   border-radius: 0;
-  border-bottom: 1px solid ${(props) => props.theme.colors.black300};
-  color: ${(props) => props.theme.colors.cyan700};
+  border-bottom: 1px solid ${props => props.theme.colors.black300};
+  color: ${props => props.theme.colors.cyan700};
 
   &:hover {
-    background: ${(props) => props.theme.colors.black100};
+    background: ${props => props.theme.colors.black100};
   }
 
   &:active {
-    background: ${(props) => props.theme.colors.black200};
+    background: ${props => props.theme.colors.black200};
   }
 `;
 

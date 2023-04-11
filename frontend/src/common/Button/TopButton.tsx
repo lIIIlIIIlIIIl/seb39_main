@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
+import { FaChevronUp } from "@react-icons/all-files/fa/FaChevronUp";
 import { useEffect, useState } from "react";
-import { FaChevronUp } from "react-icons/fa";
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -22,7 +23,7 @@ const Button = styled.button`
   &.show {
     display: block;
     visibility: visible;
-    color: ${(props) => props.theme.colors.cyan400};
+    color: ${props => props.theme.colors.cyan400};
     font-size: 27px;
     font-weight: 900;
     right: 45px;

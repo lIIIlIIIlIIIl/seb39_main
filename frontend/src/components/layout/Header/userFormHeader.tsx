@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
+import { IoChatbubbleEllipsesSharp } from "@react-icons/all-files/io5/IoChatbubbleEllipsesSharp";
 import { Link, useLocation } from "react-router-dom";
 
 import logoB from "../../../assets/Image/logo/logo-b.png";
@@ -11,7 +11,7 @@ import * as S from "./style";
 
 const UserFormHeader = () => {
   //TODO: 임시 로그인 상태 변수
-  const isLogin = useAppSelector((state) => state.login.isLogin);
+  const isLogin = useAppSelector(state => state.login.isLogin);
   const location = useLocation();
 
   return (

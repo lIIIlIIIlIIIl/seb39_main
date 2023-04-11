@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
+import { IoChatbubbleEllipsesSharp } from "@react-icons/all-files/io5/IoChatbubbleEllipsesSharp";
 import { Link, useLocation } from "react-router-dom";
 
 import logo from "../../../assets/Image/logo/logo.png";

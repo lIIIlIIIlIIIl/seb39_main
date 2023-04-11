@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
+import { AiOutlineShareAlt } from "@react-icons/all-files/ai/AiOutlineShareAlt";
+import { HiHeart } from "@react-icons/all-files/hi/HiHeart";
+import { HiOutlineHeart } from "@react-icons/all-files/hi/HiOutlineHeart";
+import { IoChatbubbleEllipsesOutline } from "@react-icons/all-files/io5/IoChatbubbleEllipsesOutline";
+import { RiAlarmWarningLine } from "@react-icons/all-files/ri/RiAlarmWarningLine";
 import { useState } from "react";
-import { AiOutlineShareAlt } from "react-icons/ai";
-import { HiHeart, HiOutlineHeart } from "react-icons/hi";
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import { RiAlarmWarningLine } from "react-icons/ri";
 import { useMutation } from "react-query";
 import styled from "styled-components";
 

@@ -1,4 +1,5 @@
-import { BiSearch } from "react-icons/bi";
+/* eslint-disable prettier/prettier */
+import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
 import styled from "styled-components";
 
 const InputTagBox = styled.div<InputProps>`
@@ -12,7 +13,7 @@ const InputTagBox = styled.div<InputProps>`
 
   .icon {
     font-size: 20px;
-    color: ${(props) => {
+    color: ${props => {
       return props.theme.colors.black400;
     }};
     position: absolute;
@@ -28,7 +29,7 @@ const InputTagBox = styled.div<InputProps>`
   }
 
   &.header {
-    @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
+    @media (min-width: ${props => props.theme.breakPoints.desktop}) {
       display: flex;
       width: 40%;
     }
@@ -47,15 +48,15 @@ const InputTag = styled.input<InputProps>`
   border: 3px solid
     ${({ borderColor }) => (borderColor ? borderColor : "#EEEEEE")};
   border-radius: 30px;
-  font-size: ${(props) => props.theme.fontSize.size15};
+  font-size: ${props => props.theme.fontSize.size15};
 
   &::placeholder {
-    color: ${(props) => props.theme.colors.black400};
+    color: ${props => props.theme.colors.black400};
   }
 
   &:focus {
     outline: none;
-    border-color: ${(props) => {
+    border-color: ${props => {
       return props.theme.colors.cyan200;
     }};
   }

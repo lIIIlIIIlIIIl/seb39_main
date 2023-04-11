@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
+import { FaBell } from "@react-icons/all-files/fa/FaBell";
 import { useRef, useState } from "react";
-import { FaBell } from "react-icons/fa";
 import styled from "styled-components";
 
 import Tabs from "../../common/Tabs/Tabs";
@@ -18,11 +19,11 @@ const NotifiBtn = styled.button`
 
   .icon {
     font-size: 28px;
-    color: ${(props) => props.theme.colors.black900};
+    color: ${props => props.theme.colors.black900};
   }
 
   .main {
-    color: ${(props) => props.theme.colors.white000};
+    color: ${props => props.theme.colors.white000};
   }
 `;
 
@@ -35,8 +36,8 @@ const NotifiBox = styled.div`
   left: -10.5em;
   top: 2.5em;
   margin-right: 2em;
-  background-color: ${(props) => props.theme.colors.white000};
-  border: 1px solid ${(props) => props.theme.colors.black300};
+  background-color: ${props => props.theme.colors.white000};
+  border: 1px solid ${props => props.theme.colors.black300};
   border-right: none;
   border-radius: 4px;
 `;

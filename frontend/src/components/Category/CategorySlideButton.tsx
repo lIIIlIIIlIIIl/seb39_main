@@ -1,4 +1,6 @@
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+/* eslint-disable prettier/prettier */
+import { MdKeyboardArrowLeft } from "@react-icons/all-files/md/MdKeyboardArrowLeft";
+import { MdKeyboardArrowRight } from "@react-icons/all-files/md/MdKeyboardArrowRight";
 import { css } from "styled-components";
 
 import IconButton from "../../common/Button/IconButton";
@@ -12,11 +14,11 @@ const customButtonStyle = css`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: ${(props) => props.theme.colors.cyan500};
+  background: ${props => props.theme.colors.cyan500};
   color: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 5px 5px rgba(0, 0, 0, 0.1);
   :hover {
-    background: ${(props) => props.theme.colors.cyan600};
+    background: ${props => props.theme.colors.cyan600};
   }
 `;
 

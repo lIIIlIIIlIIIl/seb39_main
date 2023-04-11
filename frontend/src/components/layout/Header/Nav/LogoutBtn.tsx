@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut } from "@react-icons/all-files/fi/FiLogOut";
 import styled from "styled-components";
 
 const Button = styled.div`

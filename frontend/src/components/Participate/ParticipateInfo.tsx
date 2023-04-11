@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { BiMinus } from "@react-icons/all-files/bi/BiMinus";
+import { BiPlus } from "@react-icons/all-files/bi/BiPlus";
 import React, { useCallback, useEffect, useState } from "react";
-import { BiMinus, BiPlus } from "react-icons/bi";
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";

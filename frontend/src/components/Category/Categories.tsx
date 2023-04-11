@@ -1,4 +1,4 @@
-import { FaDog } from "react-icons/fa";
+import { FaDog } from "@react-icons/all-files/fa/FaDog";
 import {
   IoBedOutline,
   IoBookOutline,

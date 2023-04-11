@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
+import { AiOutlinePicture } from "@react-icons/all-files/ai/AiOutlinePicture";
+import { RiDeleteBin5Line } from "@react-icons/all-files/ri/RiDeleteBin5Line";
 import React, { useRef, useState } from "react";
-import { AiOutlinePicture } from "react-icons/ai";
-import { RiDeleteBin5Line } from "react-icons/ri";
 import { useMutation } from "react-query";
 import styled from "styled-components";
 

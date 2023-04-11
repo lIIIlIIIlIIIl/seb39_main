@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { AiFillHome, AiFillStar } from "react-icons/ai";
+import { AiFillHome } from "@react-icons/all-files/ai/AiFillHome";
+import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import styled from "styled-components";
 
 import { Image } from "../../types/post";

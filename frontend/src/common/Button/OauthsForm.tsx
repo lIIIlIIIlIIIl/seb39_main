@@ -1,5 +1,5 @@
-import { FcGoogle } from "react-icons/fc";
-import { RiKakaoTalkFill } from "react-icons/ri";
+import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
+import { RiKakaoTalkFill } from "@react-icons/all-files/ri/RiKakaoTalkFill";
 import { SiNaver } from "react-icons/si";
 import styled from "styled-components";
 

@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
+import { AiOutlineUser } from "@react-icons/all-files/ai/AiOutlineUser";
+import { FaRegHandshake } from "@react-icons/all-files/fa/FaRegHandshake";
+import { FaUserCircle } from "@react-icons/all-files/fa/FaUserCircle";
+import { HiOutlineHeart } from "@react-icons/all-files/hi/HiOutlineHeart";
 import { useRef } from "react";
-import { AiOutlineUser } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
-import { FaRegHandshake, FaUserCircle } from "react-icons/fa";
-import { HiOutlineHeart } from "react-icons/hi";
 import styled from "styled-components";
 
 import { useAppDispatch } from "../../../../hooks/Redux/index";
@@ -21,8 +22,8 @@ const ProfileImage = styled.div<Image>`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 2px solid ${(props) => props.theme.colors.cyan400};
-  background: url(${(props) => props.image});
+  border: 2px solid ${props => props.theme.colors.cyan400};
+  background: url(${props => props.image});
   background-repeat: no-repeat;
   background-size: cover;
 `;
