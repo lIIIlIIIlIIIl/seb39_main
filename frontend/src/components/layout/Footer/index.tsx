@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { BsGithub } from "react-icons/bs";
-import { SiNotion } from "react-icons/si";
+import { ImGithub } from "@react-icons/all-files/im/ImGithub";
+import { SiNotion } from "@react-icons/all-files/si/SiNotion";
 import styled from "styled-components";
 
 const Container = styled.footer`
@@ -33,7 +33,7 @@ const Footer = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <BsGithub className="icon github" />
+          <ImGithub className="icon github" />
         </a>
         <a
           href="https://www.notion.so/codestates/Main-Project-7b36225b7af244e78ee0142780f245f8"

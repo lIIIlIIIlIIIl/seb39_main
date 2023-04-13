@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { AiOutlineUser } from "@react-icons/all-files/ai/AiOutlineUser";
+import { FaPencilAlt } from "@react-icons/all-files/fa/FaPencilAlt";
 import { FaRegHandshake } from "@react-icons/all-files/fa/FaRegHandshake";
 import { FaUserCircle } from "@react-icons/all-files/fa/FaUserCircle";
 import { HiOutlineHeart } from "@react-icons/all-files/hi/HiOutlineHeart";
 import { useRef } from "react";
-import { BsPencilFill } from "react-icons/bs";
 import styled from "styled-components";
 
 import { useAppDispatch } from "../../../../hooks/Redux/index";
@@ -62,7 +62,7 @@ const navs = [
   {
     label: "새 공동구매",
     path: "/new",
-    icon: <BsPencilFill />,
+    icon: <FaPencilAlt />,
     className: "edit",
   },
   { label: "회원정보", path: "/user", icon: <AiOutlineUser /> },

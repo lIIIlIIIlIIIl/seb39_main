@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
+import { FaStar } from "@react-icons/all-files/fa/FaStar";
 import { useState } from "react";
-import { FaStar } from "react-icons/fa";
 import styled, { css } from "styled-components";
 
 import { useAppDispatch } from "../../hooks/Redux";
@@ -28,7 +29,7 @@ const StarContainer = styled.main`
   display: flex;
   column-gap: 5px;
   padding: 1em 0 2em 0;
-  color: ${(props) => props.theme.colors.black300};
+  color: ${props => props.theme.colors.black300};
 
   .click {
     color: #ffd800;
@@ -64,7 +65,7 @@ const RatingModal = () => {
     setClicked(clickStates);
   };
 
-  console.log("평점: ", clicked.filter((el) => el).length);
+  console.log("평점: ", clicked.filter(el => el).length);
 
   return (
     <Modal customModalStyle={customModalStyle}>
