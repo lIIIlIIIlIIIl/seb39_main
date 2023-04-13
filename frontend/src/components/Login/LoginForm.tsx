@@ -1,30 +1,15 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useState } from "react";
-import { useMutation } from "react-query";
-import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import {
-  loginEmailCheck,
-  loginPasswordCheck,
-} from "../../assets/FormCheck/LoginCheckFuc";
 import Button from "../../common/Button/ButtonForm";
 import LabelInput from "../../common/Input/LabelInput";
-import { loginUser, userLogin } from "../../config/API/api";
-import { setCookie } from "../../config/Cookie";
-
+import { useRouter } from "../../hooks/useRouter";
 const Form = styled.form`
   width: 100%;
   padding: 1em;
-`;
-
-const Validation = styled.div`
-  display: block;
-  margin-top: 5px;
-  color: ${({ theme }) => theme.colors.red700};
-  margin-bottom: 2rem;
-  font-size: ${({ theme }) => theme.fontSize.size12};
 `;
 
 const LinkContent = styled.div`
@@ -47,84 +32,46 @@ const ButtoneContent = styled.div`
   justify-content: center;
 `;
 
-interface stateType {
-  from: string;
-}
-
 const LoginForm = () => {
-  const [userEmail, setUserEmail] = useState<string>("");
-  const [userPassword, setUserPassword] = useState<string>("");
+  const { routeTo } = useRouter();
 
-  const [validEmail, setValidEmail] = useState<string>("");
-  const [validPassword, setValidPssword] = useState<string>("");
+  const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-  const { mutate } = useMutation(async (body: loginUser) => userLogin(body));
+    const formData = new FormData(event.currentTarget);
 
-  const location = useLocation();
-  const { from } = location.state || ({ from: "/" } as stateType);
+    const userEmail = formData.get("userEmail") as string;
 
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const userInfo: loginUser = { email: userEmail, password: userPassword };
+    const userPassword = formData.get("userPassword") as string;
 
-    mutate(userInfo, {
-      onSuccess: data => {
-        const userData = {
-          userId: data.data.userId,
-          username: data.data.username,
-          authorization: data.headers.authorization,
-          profileUrl: data.data.profileUrl,
-        };
+    if (!userEmail) {
+      return alert("이메일을 입력해주세요.");
+    }
 
-        setCookie("userInfo", userData, {
-          path: "/",
-          maxAge: 6000,
-        });
+    if (!userPassword) {
+      return alert("비밀번호를 입력해주세요.");
+    }
 
-        window.location.replace(from);
-      },
-      onError: error => {
-        console.log(error);
-      },
+    const loginResult = await axios.post("/login", {
+      userEmail,
+      userPassword,
     });
 
-    //! 성공적으로 로그인이 되면 홈으로 이동하기
+    if (loginResult.status !== 200) {
+      alert("이메일 또는 비밀번호를 확인해주세요.");
+    }
+
+    if (loginResult.status === 200) {
+      console.log(loginResult.data);
+      localStorage.setItem("user", JSON.stringify(loginResult.data));
+      routeTo("/");
+    }
   };
-
-  const onChangeEmail = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const email = event.target.value;
-      setUserEmail(email);
-      loginEmailCheck(email, setValidEmail);
-    },
-    [userEmail]
-  );
-
-  const onChangePassword = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const password = event.target.value;
-      setUserPassword(password);
-      loginPasswordCheck(password, setValidPssword);
-    },
-    [userPassword]
-  );
 
   return (
     <Form onSubmit={onSubmitHandler}>
-      <LabelInput
-        id="userEmail"
-        type="email"
-        lableText="이메일"
-        onChange={onChangeEmail}
-      />
-      <Validation>{validEmail}</Validation>
-      <LabelInput
-        id="userNickname"
-        type="password"
-        lableText="비밀번호"
-        onChange={onChangePassword}
-      />
-      <Validation>{validPassword}</Validation>
+      <LabelInput id="userEmail" type="email" lableText="이메일" />
+      <LabelInput id="userPassword" type="password" lableText="비밀번호" />
       <LinkContent>
         <Link to="/password">
           <span>비밀번호 찾기</span>

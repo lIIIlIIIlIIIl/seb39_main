@@ -96,7 +96,12 @@ const LabelInput = ({ lableText, left, ...props }: Props) => {
 
   return (
     <Container>
-      <Input className={className} onBlur={bluerHandler} {...props} />
+      <Input
+        className={className}
+        onBlur={bluerHandler}
+        {...props}
+        name={props.id}
+      />
       <span className="highlight"></span>
       <span className="bar"></span>
       <Label left={left}>{lableText}</Label>
