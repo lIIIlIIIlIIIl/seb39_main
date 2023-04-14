@@ -29,12 +29,13 @@ const Selector: React.FC<Props> = ({
   onChangeHandler,
   control,
   selected,
+  name,
 }) => {
   return (
     <SelectorContainer>
       <label>{lableText}</label>
       {control ? (
-        <Select onChange={onChangeHandler} defaultValue={selected}>
+        <Select name={name} onChange={onChangeHandler} defaultValue={selected}>
           {options &&
             options.map((data) => (
               <option key={data.value} value={data.value}>

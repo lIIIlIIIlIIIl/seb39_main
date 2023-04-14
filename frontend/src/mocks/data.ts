@@ -1,3 +1,33 @@
+export const UserData = [
+  {
+    userId: "1",
+    email: "test@naver.com",
+    password: "123123",
+    nickName: "테스트",
+    region: "서울특별시",
+    town: "강남구",
+    profileUrl: "https://source.unsplash.com/80x80/?cat",
+  },
+  {
+    userId: "2",
+    email: "test1@naver.com",
+    password: "123123",
+    nickName: "테스트1",
+    region: "서울특별시",
+    town: "강남구",
+    profileUrl: "https://source.unsplash.com/80x80/?cat",
+  },
+  {
+    userId: "3",
+    email: "test2@naver.com",
+    password: "123123",
+    nickName: "테스트2",
+    region: "서울특별시",
+    town: "강남구",
+    profileUrl: "https://source.unsplash.com/80x80/?cat",
+  },
+];
+
 export const Data = [
   {
     user_id: 1,

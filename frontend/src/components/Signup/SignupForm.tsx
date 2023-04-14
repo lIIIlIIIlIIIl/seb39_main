@@ -1,12 +1,10 @@
 /* eslint-disable prettier/prettier */
-import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
 import SignupSelect from "../../common/Select/SelectForm";
-import { signupUser, userSignup } from "../../config/API/api";
-import { useAppSelector } from "../../hooks/Redux";
+import { useRouter } from "../../hooks/useRouter";
 import SignupInputs from "./SignupInputs";
 
 const Form = styled.form`
@@ -20,29 +18,42 @@ const SignupButton = styled.div`
   margin-top: 3rem;
 `;
 
-const SignupForm = () => {
-  const { email, password, passwordCheck, username, region, town, profileUrl } =
-    useAppSelector(state => state.signup);
-  const navigate = useNavigate();
-  const { mutate } = useMutation(async (userInfo: signupUser) =>
-    userSignup(userInfo)
-  );
+interface UserInfo {
+  email: string;
+  password: string;
+  nickName: string;
+  region: string;
+  town: string;
+  profileUrl: string;
+}
 
-  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+const SignupForm = () => {
+  const { routeTo } = useRouter();
+  const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+
+    const email = formData.get("userEmail") as string;
+    const nickName = formData.get("userNickname") as string;
+    const password = formData.get("userPassword") as string;
+    const passowrdConfirm = formData.get("userPasswordConfirm") as string;
+    const region = formData.get("region") as string;
+    const town = formData.get("town") as string;
+
     if (email === "") {
       return alert("이메일을 입력해주세요.");
     }
-    if (username === "") {
+    if (nickName === "") {
       return alert("닉네임을 입력해주세요.");
     }
     if (password === "") {
       return alert("비밀번호를 입력해주세요.");
     }
-    if (passwordCheck === "") {
+    if (passowrdConfirm === "") {
       return alert("비밀번호를 확인해주세요.");
     }
-    if (passwordCheck !== password) {
+    if (passowrdConfirm !== password) {
       return alert("비밀번호가 일치하지 않습니다");
     }
     if (region === "") {
@@ -52,33 +63,33 @@ const SignupForm = () => {
       return alert("동네를 선택해주세요.");
     }
 
-    //! 회원가입이 성공적으로 이뤄지면 로그인 페이지로 이동하기
     if (
       email &&
-      username &&
+      nickName &&
       password &&
-      passwordCheck &&
-      password === passwordCheck &&
+      passowrdConfirm &&
+      password === passowrdConfirm &&
       region &&
       town
     ) {
-      const userData = {
+      const userInfo: UserInfo = {
         email,
         password,
-        username,
+        nickName,
         region,
         town,
-        profileUrl,
+        profileUrl: "https://source.unsplash.com/80x80/?cat",
       };
-      console.log(userData);
-      mutate(userData, {
-        onSuccess: () => {
-          navigate("/login");
-        },
-        onError: error => {
-          console.log(error);
-        },
-      });
+
+      const response = await axios.post("/signup", userInfo);
+
+      if (response.status !== 200) {
+        alert("회원가입 실패");
+      }
+
+      if (response.status === 200) {
+        routeTo("/login");
+      }
     }
   };
   return (

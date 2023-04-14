@@ -4,7 +4,7 @@
 import { rest } from "msw";
 
 import { DetailType } from "../types/post";
-import { popularData } from "./data";
+import { popularData, UserData } from "./data";
 import {
   fullData,
   responseForPage1,
@@ -83,23 +83,20 @@ const handlers = [
   rest.post("/login", async (req, res, ctx) => {
     const { userEmail, userPassword } = await req.json();
 
-    console.log(userEmail, userPassword);
-
-    const userInfo = users.filter(
-      (user) =>
-        user.userEmail === userEmail && user.userPassword === userPassword
+    const findUser = UserData.find(
+      (element) =>
+        element.email === userEmail && element.password === userPassword
     );
 
-    if (userInfo.length === 0) {
-      return res(ctx.status(301), ctx.json({ ok: false }));
+    if (findUser === undefined) {
+      return res(ctx.status(400, "fail"));
     }
-
-    if (userInfo.length !== 0) {
+    if (findUser) {
       return res(
         ctx.status(200),
         ctx.json({
-          userId: userInfo[0].userId,
-          userNickname: userInfo[0].userNickname,
+          userId: findUser.userId,
+          userNickname: findUser.nickName,
           profileImage_uri: "https://source.unsplash.com/80x80/?cat",
         })
       );
@@ -107,24 +104,31 @@ const handlers = [
   }),
 
   rest.post("/signup", async (req, res, ctx) => {
-    const { email, nickname, password } = await req.json();
+    const { email, nickName, password, region, town, profileUrl } =
+      await req.json();
+
     const randomID =
       Date.now().toString(36) + Math.random().toString(36).slice(2);
-    console.log(email, nickname, password);
-    if (email && password) {
-      users.push({
-        userEmail: email,
-        userPassword: password,
-        userNickname: nickname,
-        userId: randomID,
-      });
+
+    const findUser = UserData.find((element) => element.email === email);
+
+    if (findUser) {
+      return res(ctx.status(400, "user exists"));
     }
-    return res(
-      ctx.status(200),
-      ctx.json({
-        signup: "good",
-      })
-    );
+
+    if (findUser === undefined) {
+      UserData.push({
+        userId: randomID,
+        email,
+        nickName,
+        password,
+        region,
+        town,
+        profileUrl,
+      });
+
+      return res(ctx.status(200, "signup success"));
+    }
   }),
 
   rest.get("/product/:userid/:productid", (req, res, ctx) => {
