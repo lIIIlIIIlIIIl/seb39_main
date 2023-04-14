@@ -9,6 +9,7 @@ import LabelInput from "../../common/Input/LabelInput";
 import UserFormHeader from "../../components/layout/Header/userFormHeader";
 import { userPassword } from "../../config/API/api";
 import { useAppDispatch } from "../../hooks/Redux";
+import { useRouter } from "../../hooks/useRouter";
 import { closeModal, openModal } from "../../redux/modalSlice";
 
 const PageContainer = styled.div`
@@ -32,14 +33,6 @@ const PasswordContainer = styled.div`
   box-shadow: rgb(0 0 0 / 25%) 0px 0px 4px 0px;
 `;
 
-// const PasswordTitle = styled.div`
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-//   margin-bottom: 3rem;
-//   font-size: ${({ theme }) => theme.fontSize.size20};
-// `;
-
 const PasswordForm = styled.form`
   width: 100%;
 `;
@@ -47,7 +40,7 @@ const PasswordForm = styled.form`
 const FormButton = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin-top: 2rem;
 `;
 
@@ -57,6 +50,7 @@ const Password = () => {
 
   const [userEmail, setUserEmail] = useState<string>("");
   const { mutate } = useMutation((email: string) => userPassword(email));
+  const { routeTo } = useRouter();
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -86,9 +80,6 @@ const Password = () => {
       <UserFormHeader />
       <Container>
         <PasswordContainer>
-          {/* <PasswordTitle>
-            <span>가입한 이메일 주소를 입력해주세요.</span>
-          </PasswordTitle> */}
           <PasswordForm onSubmit={onSubmitHandler}>
             <LabelInput
               type="email"
@@ -97,6 +88,13 @@ const Password = () => {
               left="-15px"
             />
             <FormButton>
+              <Button
+                width="200px"
+                height="2.5rem"
+                onClick={() => routeTo("/login")}
+              >
+                취 소
+              </Button>
               <Button width="200px" height="2.5rem">
                 임시 비밀번호 받기
               </Button>

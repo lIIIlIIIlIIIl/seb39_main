@@ -49,7 +49,6 @@ const UsefulContent = styled.div`
 const Login = () => {
   return (
     <>
-      <UserFormHeader />
       <PageContainer>
         <Container>
           <LoginContainer>

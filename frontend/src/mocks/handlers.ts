@@ -23,6 +23,7 @@ type user = {
   userEmail: string;
   userPassword: string;
   userNickname: string;
+  userId: string;
 }[];
 
 const users: user = [
@@ -30,6 +31,7 @@ const users: user = [
     userEmail: "abc@naver.com",
     userPassword: "123123",
     userNickname: "손흥민",
+    userId: "sunwpdk124145",
   },
 ];
 
@@ -80,32 +82,24 @@ const handlers = [
 
   rest.post("/login", async (req, res, ctx) => {
     const { userEmail, userPassword } = await req.json();
-    const isUser: user = [];
 
-    users.map(user => {
-      if (user.userEmail === userEmail && user.userPassword === userPassword) {
-        return isUser.push(user);
-      }
-    });
+    console.log(userEmail, userPassword);
 
-    if (isUser) {
-      console.log(isUser);
-      return res(
-        ctx.status(200),
-        ctx.json({
-          userId: "2",
-          userNickname: isUser[0].userNickname,
-          profileImage_uri: "https://source.unsplash.com/80x80/?cat",
-        })
-      );
+    const userInfo = users.filter(
+      (user) =>
+        user.userEmail === userEmail && user.userPassword === userPassword
+    );
+
+    if (userInfo.length === 0) {
+      return res(ctx.status(301), ctx.json({ ok: false }));
     }
 
-    if (userEmail === "asdf@naver.com" && userPassword === "123123") {
+    if (userInfo.length !== 0) {
       return res(
         ctx.status(200),
         ctx.json({
-          userId: "abc",
-          userNickname: "cooker",
+          userId: userInfo[0].userId,
+          userNickname: userInfo[0].userNickname,
           profileImage_uri: "https://source.unsplash.com/80x80/?cat",
         })
       );
@@ -114,12 +108,15 @@ const handlers = [
 
   rest.post("/signup", async (req, res, ctx) => {
     const { email, nickname, password } = await req.json();
+    const randomID =
+      Date.now().toString(36) + Math.random().toString(36).slice(2);
     console.log(email, nickname, password);
     if (email && password) {
       users.push({
         userEmail: email,
         userPassword: password,
         userNickname: nickname,
+        userId: randomID,
       });
     }
     return res(
@@ -133,7 +130,7 @@ const handlers = [
   rest.get("/product/:userid/:productid", (req, res, ctx) => {
     const { userid, productid } = req.params;
 
-    fullData.map(data => {
+    fullData.map((data) => {
       if (
         data.user_id === Number(userid) &&
         data.product_id === Number(productid)
@@ -148,7 +145,7 @@ const handlers = [
   rest.get("/participate/:user_id/:product_id", async (req, res, ctx) => {
     const { user_id, product_id } = req.params;
 
-    fullData.map(data => {
+    fullData.map((data) => {
       if (
         data.user_id === Number(user_id) &&
         data.product_id === Number(product_id)

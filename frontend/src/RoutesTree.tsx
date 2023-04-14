@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Main from "./Main";
 const Home = lazy(() => import("./pages/Home"));
@@ -20,10 +20,10 @@ const GroupBuying = lazy(() => import("./pages/GroupBuying"));
 
 const RoutesTree = () => {
   return (
-    <>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />}>
-          <Route index element={<Home />} />
+        <Route element={<Main />}>
+          <Route path="/" element={<Home />} />
           <Route path="/category" element={<Category />} />
           <Route path="/groupbuying" element={<GroupBuying />} />
           <Route path="/groupbuying/:regions" element={<GroupBuying />} />
@@ -43,12 +43,13 @@ const RoutesTree = () => {
           <Route path="/current" element={<CurrentStatus />} />
           <Route path="/favorite" element={<Favorite />} />
         </Route>
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/password" element={<Password />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </BrowserRouter>
   );
 };
 
