@@ -9,6 +9,7 @@ import styled from "styled-components";
 
 import { useAppDispatch } from "../../../../hooks/Redux/index";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import { loginActions } from "../../../../redux/loginSlice";
 import { openModal } from "../../../../redux/modalSlice";
 import { Image } from "../../../../types/post";
 import LogoutBtn from "./LogoutBtn";
@@ -22,8 +23,8 @@ const ProfileImage = styled.div<Image>`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 2px solid ${props => props.theme.colors.cyan400};
-  background: url(${props => props.image});
+  border: 2px solid ${(props) => props.theme.colors.cyan400};
+  background: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-size: cover;
 `;
@@ -35,11 +36,11 @@ const DropDownBtn = styled.button`
 
   .icon {
     font-size: 30px;
-    color: ${props => props.theme.colors.black900};
+    color: ${(props) => props.theme.colors.black900};
   }
 
   .main {
-    color: ${props => props.theme.colors.white000};
+    color: ${(props) => props.theme.colors.white000};
   }
 `;
 
@@ -52,8 +53,8 @@ const MenuBox = styled.div`
   left: -11em;
   top: 2.5em;
   margin-right: 2em;
-  background-color: ${props => props.theme.colors.white000};
-  border: 1px solid ${props => props.theme.colors.black300};
+  background-color: ${(props) => props.theme.colors.white000};
+  border: 1px solid ${(props) => props.theme.colors.black300};
   border-radius: 4px;
   z-index: 999;
 `;
@@ -85,10 +86,12 @@ const NavDropDown = ({ className }: Props) => {
 
   const logoutModalHandler = () => {
     dispatch(openModal({ modalType: "logoutModal", isVisible: true }));
+    dispatch(loginActions.logout());
+    localStorage.removeItem("user");
   };
 
   const navClickHandler = () => {
-    setIsActive(!isActive);
+    setIsActive((prev) => !prev);
   };
 
   return (

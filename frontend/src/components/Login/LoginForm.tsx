@@ -1,12 +1,12 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
 import LabelInput from "../../common/Input/LabelInput";
+import { useAppDispatch } from "../../hooks/Redux";
 import { useRouter } from "../../hooks/useRouter";
+import { loginActions } from "../../redux/loginSlice";
 const Form = styled.form`
   width: 100%;
   padding: 1em;
@@ -34,6 +34,7 @@ const ButtoneContent = styled.div`
 
 const LoginForm = () => {
   const { routeTo } = useRouter();
+  const dispatch = useAppDispatch();
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -62,8 +63,8 @@ const LoginForm = () => {
     }
 
     if (loginResult.status === 200) {
-      console.log(loginResult.data);
       localStorage.setItem("user", JSON.stringify(loginResult.data));
+      dispatch(loginActions.login());
       routeTo("/");
     }
   };
