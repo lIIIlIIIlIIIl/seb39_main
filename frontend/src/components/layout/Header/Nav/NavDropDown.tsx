@@ -9,6 +9,7 @@ import styled from "styled-components";
 
 import { useAppDispatch } from "../../../../hooks/Redux/index";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import { useRouter } from "../../../../hooks/useRouter";
 import { loginActions } from "../../../../redux/loginSlice";
 import { openModal } from "../../../../redux/modalSlice";
 import { Image } from "../../../../types/post";
@@ -78,6 +79,7 @@ const NavDropDown = ({ className }: Props) => {
   const dropDownRef = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
   const [isActive, setIsActive] = useOutsideClick(dropDownRef, btnRef, false);
+  const { routeTo } = useRouter();
 
   //임시 프로필 이미지
   const image_uri = "https://source.unsplash.com/80x80/?cat";
@@ -88,6 +90,7 @@ const NavDropDown = ({ className }: Props) => {
     dispatch(openModal({ modalType: "logoutModal", isVisible: true }));
     dispatch(loginActions.logout());
     localStorage.removeItem("user");
+    routeTo("/");
   };
 
   const navClickHandler = () => {

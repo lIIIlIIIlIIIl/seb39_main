@@ -26,15 +26,6 @@ type user = {
   userId: string;
 }[];
 
-const users: user = [
-  {
-    userEmail: "abc@naver.com",
-    userPassword: "123123",
-    userNickname: "손흥민",
-    userId: "sunwpdk124145",
-  },
-];
-
 const productData: DetailType[] = [];
 
 const handlers = [
@@ -42,7 +33,7 @@ const handlers = [
     return res(ctx.status(200), ctx.json(popularData));
   }),
 
-  rest.get("https://groupbuying/api/", (req, res, ctx) => {
+  rest.get("/groupbuying", (req, res, ctx) => {
     const pageNumber = req.url.searchParams.get("page");
     let response;
 
