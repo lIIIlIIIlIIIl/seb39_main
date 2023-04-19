@@ -2,11 +2,7 @@
 import "@toast-ui/editor/dist/toastui-editor.css";
 
 import { Editor } from "@toast-ui/react-editor";
-import { useRef } from "react";
-import { useMutation } from "react-query";
 import styled from "styled-components";
-
-import { imageUpload } from "../../config/API/api";
 
 const TextContent = styled.div`
   width: 100%;
@@ -23,39 +19,18 @@ const EditorComponent = styled.div`
 
 interface Props {
   value?: string;
-  editorRef?: React.RefObject<Editor>;
-  setEditor?: React.Dispatch<React.SetStateAction<string>>;
+  editorRef: React.RefObject<Editor>;
+  editText?: (text: string) => void;
 }
 
-const TextEditor = ({ value, setEditor }: Props) => {
-  const formData = new FormData();
-  const editorRef = useRef<Editor>(null);
-
-  const { mutate } = useMutation((formData: FormData) =>
-    imageUpload(formData, "editor")
-  );
-
+const TextEditor = ({ value, editorRef }: Props) => {
   const onUploadImage = async (
     blob: Blob | File,
     callback: (url: string, text?: string) => void
   ) => {
-    formData.append("file", blob);
-    mutate(formData, {
-      onSuccess: data => {
-        const url = data.data.data;
-        callback(url, `${url}`); // 사진 화면에 보여주기
-      },
-      onError: error => {
-        console.log(error);
-      },
-    });
-
+    const url = URL.createObjectURL(blob);
+    callback(url, `${url}`); // 사진 화면에 보여주기
     return false;
-  };
-
-  const onChangeHandler = () => {
-    const data = editorRef.current?.getInstance().getHTML();
-    setEditor && data && setEditor(data);
   };
 
   return (
@@ -69,7 +44,6 @@ const TextEditor = ({ value, setEditor }: Props) => {
           initialEditType="wysiwyg"
           hideModeSwitch={true}
           language="ko-KR"
-          onChange={onChangeHandler}
           toolbarItems={[
             ["heading", "bold", "italic", "strike"],
             ["hr", "quote"],

@@ -36,6 +36,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   lableText?: string;
   value?: string;
   max?: string;
+  name?: string;
 }
 
 const InputForm: React.FC<Props> = ({
@@ -50,13 +51,13 @@ const InputForm: React.FC<Props> = ({
       {props.value ? (
         <input
           {...props}
-          name={props.id}
+          name={props.name}
           maxLength={30}
           value={props.value}
           readOnly
         />
       ) : (
-        <input {...props} name={props.id} maxLength={30} />
+        <input {...props} name={props.name} maxLength={30} />
       )}
     </InputBox>
   );

@@ -4,13 +4,9 @@
 import { AiOutlinePicture } from "@react-icons/all-files/ai/AiOutlinePicture";
 import { RiDeleteBin5Line } from "@react-icons/all-files/ri/RiDeleteBin5Line";
 import React, { useRef, useState } from "react";
-import { useMutation } from "react-query";
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
-import { imageUpload } from "../../config/API/api";
-import { useAppDispatch } from "../../hooks/Redux";
-import { newProductActions } from "../../redux/newProductSlice";
 
 const ImgContainer = styled.div`
   width: 100%;
@@ -22,11 +18,13 @@ const ImgContainer = styled.div`
 `;
 
 const ImgContent = styled.div`
-  width: 80%;
-  margin: 2rem auto;
+  width: 100%;
+  padding: 2rem 0;
   > img {
-    width: 100%;
-    height: 100%;
+    display: block;
+    width: 280px;
+    height: 240px;
+    margin: 0 auto;
   }
 `;
 const ButtonContent = styled.div`
@@ -38,34 +36,22 @@ const ButtonContent = styled.div`
   }
 `;
 
-const ImgUpload = () => {
-  const [fileImage, setFileImage] = useState("");
-  const formData = new FormData();
-  const dispatch = useAppDispatch();
+interface PageProps {
+  name: string;
+}
 
-  const { mutate } = useMutation((formData: FormData) =>
-    imageUpload(formData, "title").then(({ data }) => data)
-  );
+const ImgUpload = ({ name }: PageProps) => {
+  const [fileImage, setFileImage] = useState<string>("");
 
   const titleImgRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
 
   const onImgChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files;
-
-    file ? formData.append("file", file[0]) : null;
-
-    mutate(formData, {
-      onSuccess: data => {
-        setFileImage(data.data);
-        dispatch(
-          newProductActions.productImageHandler({ productImage: data.data })
-        );
-      },
-      onError: error => {
-        console.log(error);
-      },
-    });
+    console.log("file", file);
+    if (!file) return;
+    const url = URL.createObjectURL(file[0]);
+    setFileImage(url);
   };
 
   const onInputClickHandler = (event: React.MouseEvent<HTMLElement>) => {
@@ -75,7 +61,6 @@ const ImgUpload = () => {
 
   const onImgDeleteHandler = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    dispatch(newProductActions.productImageHandler({ productImage: "" }));
     setFileImage("");
   };
 
@@ -84,7 +69,7 @@ const ImgUpload = () => {
       <label htmlFor="titleImg">대표 이미지</label>
       <ImgContent>
         {fileImage && (
-          <img alt="upload_image" src={fileImage} style={{ margin: "auto" }} />
+          <img alt="upload_image" src={fileImage ? fileImage : ""} />
         )}
       </ImgContent>
       <ButtonContent>
@@ -92,7 +77,7 @@ const ImgUpload = () => {
           type="file"
           id="titleImg"
           accept="image/*"
-          name="file"
+          name={name}
           ref={titleImgRef}
           onChange={onImgChangeHandler}
         />

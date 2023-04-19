@@ -21,11 +21,12 @@ const Select = styled.select`
   padding: 5px 12px;
 `;
 
-interface Props extends React.SelectHTMLAttributes<HTMLSelectElement> {
+interface Props {
   lableText?: string;
   options?: options;
   onChangeHandler?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   selected?: string;
+  name?: string;
 }
 
 const CategorySelector: React.FC<Props> = ({
@@ -33,11 +34,13 @@ const CategorySelector: React.FC<Props> = ({
   options,
   onChangeHandler,
   selected,
+  name,
 }) => {
   return (
     <SelectorContainer>
       <label>{lableText}</label>
       <Select
+        name={name}
         defaultValue={selected}
         onChange={onChangeHandler}
         placeholder="카테고리를 선택해주세요."
