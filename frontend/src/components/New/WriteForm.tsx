@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import { Editor } from "@toast-ui/react-editor";
-import React, { useCallback, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { categories } from "../../assets/Selector/SeletorOptions";
@@ -10,6 +10,7 @@ import Button from "../../common/Button/ButtonForm";
 import InputForm from "../../common/Input/InputForm";
 import CategorySelector from "../../common/Select/CategorySelector";
 import SelectForm from "../../common/Select/SelectForm";
+import { useRouter } from "../../hooks/useRouter";
 import ImgUpload from "./ImgUpload";
 import TextEditor from "./TextEditor";
 
@@ -33,9 +34,8 @@ const ButtonContent = styled.div`
 `;
 
 const WriteForm = () => {
-  const [editor, setEditor] = useState<string>("");
-  const navigate = useNavigate();
   const editorRef = useRef<Editor>(null);
+  const { routeBack } = useRouter();
 
   const date = new Date();
   const year = date.getFullYear();
@@ -44,16 +44,18 @@ const WriteForm = () => {
   const toDay =
     month < 10 ? `${year}-0${month}-${day}` : `${year}-${month}-${day}`;
 
-  const editText = useCallback((text: string) => {
-    setEditor(text);
-  }, []);
-
-  const newProductHandler = (evnet: React.FormEvent<HTMLFormElement>) => {
+  const newProductHandler = async (evnet: React.FormEvent<HTMLFormElement>) => {
     evnet.preventDefault();
+    const { userId, userNickname, profileImage_uri } = JSON.parse(
+      localStorage.getItem("user") as string
+    );
 
     const productData = new FormData(evnet.currentTarget);
 
     const productInfo = {
+      userId,
+      userNickname,
+      profileImage_uri,
       category: productData.get("category") as string,
       title: productData.get("title") as string,
       productImage: URL.createObjectURL(
@@ -68,6 +70,12 @@ const WriteForm = () => {
       region: productData.get("region") as string,
       edit: editorRef.current?.getInstance().getHTML(),
     };
+
+    const response = await axios.post("/new", productInfo);
+
+    if (response.status === 200) {
+      return;
+    }
   };
 
   const writeButtonHandler = () => {
@@ -76,7 +84,7 @@ const WriteForm = () => {
 
   const cancelButtonHandler = () => {
     console.log("취소 버튼");
-    navigate(-1);
+    routeBack();
   };
 
   return (
@@ -122,7 +130,7 @@ const WriteForm = () => {
         />
       </DateComponent>
       <SelectForm label1="지역" label2="동네" />
-      <TextEditor editText={editText} editorRef={editorRef} />
+      <TextEditor editorRef={editorRef} />
       <ButtonContent>
         <Button
           backgroundColor="#BDBDBD"

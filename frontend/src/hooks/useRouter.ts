@@ -6,5 +6,6 @@ export const useRouter = () => {
   return {
     currentPath: window.location.pathname,
     routeTo: (path: string) => router(path),
+    routeBack: () => router(-1),
   };
 };

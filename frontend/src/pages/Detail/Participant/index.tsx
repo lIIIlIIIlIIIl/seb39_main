@@ -102,6 +102,8 @@ const Participant = ({
   const { isLogin } = useAppSelector((state) => state.login);
   const goal_price = goal_num * base_price;
 
+  console.log(image_uri);
+
   const onClickHandler = () => {
     // TODO: 단위, 단위 가격(임의로 state_price 사용) 필요
     isLogin
@@ -122,7 +124,7 @@ const Participant = ({
   return (
     <Container>
       <Title>{title}</Title>
-      <ImageBox image={profileImage_uri} className="tablet" />
+      <ImageBox image={image_uri} className="tablet" />
       <Main>
         <Aside>
           <DetailStats
@@ -139,14 +141,14 @@ const Participant = ({
           )}
           <SubButtons product_id={product_id} />
           <DetailUserInfo
-            profileImage_uri={image_uri}
+            profileImage_uri={profileImage_uri}
             user_name={user_name}
             town={town}
             score={score}
           />
         </Aside>
         <Section>
-          <ImageBox image={profileImage_uri} className="desktop" />
+          <ImageBox image={image_uri} className="desktop" />
           <ParticipantContent body={body} />
         </Section>
       </Main>

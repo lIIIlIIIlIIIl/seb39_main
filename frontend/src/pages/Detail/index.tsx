@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
+import axios from "axios";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { detailProduct } from "../../config/API/api";
-import { getCookie } from "../../config/Cookie";
 import Participant from "./Participant";
 import Publisher from "./Publisher";
 
@@ -25,23 +24,16 @@ const Container = styled.div`
 `;
 
 const Detail = () => {
-  const { product_id } = useParams();
+  const { product_id, user_id } = useParams();
+  const user = JSON.parse(localStorage.getItem("users") as string);
 
   //TODO Detail page Data 받아오기
 
   const { data } = useQuery(
     [product_id],
-    () =>
-      product_id &&
-      detailProduct(product_id).then(({ data }) => {
-        console.log({
-          returnedData: data,
-        });
-        return data;
-      })
+    async () =>
+      await axios(`/${user_id}/${product_id}`).then(({ data }) => data)
   );
-
-  const user = getCookie("userInfo");
 
   if (!user) {
     return (
@@ -49,24 +41,24 @@ const Detail = () => {
         <Container>
           {data && (
             <Participant
-              user_id={data.userId}
-              user_name={data.username}
+              user_id={data.user_id}
+              user_name={data.user_name}
               score={data.score}
-              profileImage_uri={data.productImg[0]}
-              product_id={data.productId}
+              profileImage_uri={data.profileImage_uri}
+              product_id={data.product_id}
               region={data.region}
               unit={data.unit}
               town={data.town}
-              goal_num={data.goalQuantity}
+              goal_num={data.goal_num}
               category={data.category}
-              state_num={data.stateQuantity}
-              image_uri="https://source.unsplash.com/80x80/?cat"
+              state_num={data.state_num}
+              image_uri={data.image_uri}
               title={data.title}
               body={data.body}
-              generated_time={data.generatedTime}
-              ended_time={data.endedTime}
-              status={data.state}
-              base_price={data.unitPerPrice}
+              generated_time={data.generated_time}
+              ended_time={data.ended_time}
+              status={data.status}
+              base_price={data.base_price}
               enteredUser={data.enteredUser}
             />
           )}
@@ -85,47 +77,47 @@ const Detail = () => {
       <Container>
         {data && parseInt(user.userId) === data.userId ? (
           <Publisher
-            user_id={data.userId}
-            user_name={data.username}
+            user_id={data.user_id}
+            user_name={data.user_name}
             score={data.score}
-            profileImage_uri="https://source.unsplash.com/80x80/?cat"
-            product_id={data.productId}
+            profileImage_uri={data.profileImage_uri}
+            product_id={data.product_id}
             region={data.region}
             unit={data.unit}
             town={data.town}
-            goal_num={data.goalQuantity}
+            goal_num={data.goal_num}
             category={data.category}
             state_num={data.stateQuantity}
-            image_uri={data.productImg[0]}
+            image_uri={data.image_uri}
             title={data.title}
             body={data.body}
-            generated_time={data.generatedTime}
-            ended_time={data.endedTime}
+            generated_time={data.generated_time}
+            ended_time={data.ended_time}
             status={data.state}
-            base_price={data.unitPerPrice}
+            base_price={data.base_price}
             enteredUser={data.enteredUser}
           />
         ) : (
           data && (
             <Participant
-              user_id={data.userId}
-              user_name={data.username}
+              user_id={data.user_id}
+              user_name={data.user_name}
               score={data.score}
-              profileImage_uri={data.productImg[0]}
-              product_id={data.productId}
+              profileImage_uri={data.profileImage_uri}
+              product_id={data.product_id}
               region={data.region}
               unit={data.unit}
               town={data.town}
-              goal_num={data.goalQuantity}
+              goal_num={data.goal_num}
               category={data.category}
-              state_num={data.stateQuantity}
-              image_uri="https://source.unsplash.com/80x80/?cat"
+              state_num={data.state_num}
+              image_uri={data.image_uri}
               title={data.title}
               body={data.body}
-              generated_time={data.generatedTime}
-              ended_time={data.endedTime}
+              generated_time={data.generated_time}
+              ended_time={data.ended_time}
               status={data.state}
-              base_price={data.unitPerPrice}
+              base_price={data.base_price}
             />
           )
         )}

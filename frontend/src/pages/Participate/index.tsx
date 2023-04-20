@@ -22,6 +22,7 @@ const ParticipateContainer = styled.div`
 
 const Participate = () => {
   const { product_id } = useParams();
+  console.log(product_id);
 
   const { data } = useQuery(
     [product_id],
