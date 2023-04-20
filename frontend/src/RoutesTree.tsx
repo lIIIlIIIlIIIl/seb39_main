@@ -2,6 +2,7 @@ import { lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Main from "./Main";
+import ProtectedRoute from "./ProtectedRoute";
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const New = lazy(() => import("./pages/New"));
@@ -32,16 +33,23 @@ const RoutesTree = () => {
             element={<GroupBuying />}
           />
           <Route path="/:user_id/:product_id" element={<Detail />} />
-          <Route
-            path="/participate/:user_id/:product_id"
-            element={<Participate />}
-          />
+
           <Route path="/edit" element={<Edit />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/new" element={<New />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/current" element={<CurrentStatus />} />
-          <Route path="/favorite" element={<Favorite />} />
+
+          {/* 유저전용 */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/favorite" element={<Favorite />} />
+
+            <Route path="/current" element={<CurrentStatus />} />
+
+            <Route path="/user" element={<User />} />
+            <Route
+              path="/participate/:user_id/:product_id"
+              element={<Participate />}
+            />
+          </Route>
         </Route>
 
         <Route path="/login" element={<Login />} />

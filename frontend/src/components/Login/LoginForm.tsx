@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
@@ -35,6 +35,11 @@ const ButtoneContent = styled.div`
 const LoginForm = () => {
   const { routeTo } = useRouter();
   const dispatch = useAppDispatch();
+  const location = useLocation();
+  console.log(location);
+  const from = location?.state?.from || "/";
+
+  console.log(from);
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -65,7 +70,8 @@ const LoginForm = () => {
     if (loginResult.status === 200) {
       localStorage.setItem("user", JSON.stringify(loginResult.data));
       dispatch(loginActions.login());
-      routeTo("/");
+
+      routeTo(from);
     }
   };
 
