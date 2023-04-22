@@ -263,8 +263,11 @@ const handlers = [
 
   rest.post("/new", async (req, res, ctx) => {
     const productInfo = await req.json();
-    const productId = parseInt(Math.random().toString(16).slice(2));
+    const productId = Math.floor(Math.random() * 10000000);
 
+    console.log();
+
+    console.log("before", TotalData);
     const newProduct: Category = {
       product_id: productId,
       user_id: productInfo.userId,
@@ -287,19 +290,24 @@ const handlers = [
       status: "PROCEED",
     };
     categoryData.unshift(newProduct);
+    TotalData.push(newProduct);
+    console.log("after", TotalData);
 
-    console.log(categoryData);
     return res(ctx.status(200));
   }),
 
   rest.get("/:userid/:productid", (req, res, ctx) => {
     const { userid, productid } = req.params;
     console.log(userid, productid);
+    console.log("before", TotalData);
+
     const data = TotalData.filter((el) => {
       return (
-        el.user_id === Number(userid) && el.product_id === Number(productid)
+        Number(el.user_id) === Number(userid) &&
+        Number(el.product_id) === Number(productid)
       );
     });
+    console.log(data);
     return res(ctx.status(200), ctx.json(data[0]));
   }),
 ];

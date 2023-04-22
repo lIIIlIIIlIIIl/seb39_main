@@ -25,9 +25,7 @@ const Container = styled.div`
 
 const Detail = () => {
   const { product_id, user_id } = useParams();
-  const user = JSON.parse(localStorage.getItem("users") as string);
-
-  //TODO Detail page Data 받아오기
+  const user = JSON.parse(localStorage.getItem("user") as string);
 
   const { data } = useQuery(
     [product_id],
@@ -35,6 +33,7 @@ const Detail = () => {
       await axios(`/${user_id}/${product_id}`).then(({ data }) => data)
   );
 
+  console.log(user.userId === user_id ? "my" : "no");
   if (!user) {
     return (
       <Page>
@@ -75,7 +74,7 @@ const Detail = () => {
 
     <Page>
       <Container>
-        {data && parseInt(user.userId) === data.userId ? (
+        {data && user.userId === user_id ? (
           <Publisher
             user_id={data.user_id}
             user_name={data.user_name}
@@ -116,7 +115,7 @@ const Detail = () => {
               body={data.body}
               generated_time={data.generated_time}
               ended_time={data.ended_time}
-              status={data.state}
+              status={data.status}
               base_price={data.base_price}
             />
           )

@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
+import axios from "axios";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import ParticipateInfo from "../../components/Participate/ParticipateInfo";
 import ProductDetail from "../../components/Participate/ProductDetail";
-import { detailProduct } from "../../config/API/api";
 
 const Container = styled.div`
   width: 100%;
@@ -21,19 +21,12 @@ const ParticipateContainer = styled.div`
 `;
 
 const Participate = () => {
-  const { product_id } = useParams();
-  console.log(product_id);
+  const { product_id, user_id } = useParams();
 
   const { data } = useQuery(
     [product_id],
-    () =>
-      product_id &&
-      detailProduct(product_id).then(({ data }) => {
-        console.log({
-          returnedData: data,
-        });
-        return data;
-      })
+    async () =>
+      await axios(`/${user_id}/${product_id}`).then(({ data }) => data)
   );
 
   console.log(data);
@@ -43,20 +36,20 @@ const Participate = () => {
       <ParticipateContainer>
         {data && (
           <ProductDetail
-            ended_time={data.endedTime}
-            goal_num={data.goalQuantity}
-            state_num={data.stateQuantity}
+            ended_time={data.ended_time}
+            goal_num={data.goal_num}
+            state_num={data.state_num}
             title={data.title}
-            image_uri={data.productImg[0]}
+            image_uri={data.image_uri}
             unit={data.unit}
           />
         )}
         {data && (
           <ParticipateInfo
-            base_price={data.unitPerPrice}
-            goal_num={data.goalQuantity}
-            product_id={data.productId}
-            state_num={data.stateQuantity}
+            base_price={data.base_price}
+            goal_num={data.goal_num}
+            product_id={data.product_id}
+            state_num={data.state_num}
           />
         )}
       </ParticipateContainer>

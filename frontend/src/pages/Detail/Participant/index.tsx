@@ -102,8 +102,6 @@ const Participant = ({
   const { isLogin } = useAppSelector((state) => state.login);
   const goal_price = goal_num * base_price;
 
-  console.log(image_uri);
-
   const onClickHandler = () => {
     // TODO: 단위, 단위 가격(임의로 state_price 사용) 필요
     isLogin
