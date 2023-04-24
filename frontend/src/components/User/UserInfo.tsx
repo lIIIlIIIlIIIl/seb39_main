@@ -36,16 +36,17 @@ const NameBox = styled.div`
 `;
 
 const UserInfo = () => {
+  const { userNickname, profileImage_uri } = JSON.parse(
+    localStorage.getItem("user") as string
+  );
+
   return (
     <Container>
       <InfoBox>
         <ImageBox>
-          <ProfileImage
-            src="https://avatars.githubusercontent.com/u/102649010?s=400&u=fcd429233851c39c268065b3954d367554f725d3&v=4"
-            alt="profile"
-          />
+          <ProfileImage src={profileImage_uri} alt="유저 이미지" />
         </ImageBox>
-        <NameBox>김유저</NameBox>
+        <NameBox>{userNickname}</NameBox>
       </InfoBox>
     </Container>
   );

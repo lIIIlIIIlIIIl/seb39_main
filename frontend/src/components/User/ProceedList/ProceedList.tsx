@@ -1,0 +1,94 @@
+import axios from "axios";
+import { useQuery } from "react-query";
+import styled from "styled-components";
+
+import PreviewItem from "../../Preview/PreviewItem";
+
+const Container = styled.section`
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+`;
+
+const Grid = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-row-gap: 20px;
+  padding: 0 1em;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 25px;
+    grid-row-gap: 40px;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0;
+  }
+`;
+
+// interface PageData {
+//   userId: string;
+//   userNickname: string;
+//   profileImage_url: string;
+//   category: string;
+//   title: string;
+//   productImage: Blob;
+//   unit: string;
+//   unitPerPrice: string;
+//   goalQuantity: string;
+//   startTime: string;
+//   endedTime: string;
+//   town: string;
+//   region: string;
+//   edit: string;
+// }
+
+const { userId } = JSON.parse(localStorage.getItem("user") as string);
+
+const queryKey = "proceedList";
+const queryFn = () => axios.get(`/user/${userId}`).then((res) => res.data);
+
+const ProceedList = () => {
+  const { data, isLoading, error } = useQuery(queryKey, queryFn);
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>Error</h1>;
+  }
+
+  console.log(data);
+  return (
+    <Container>
+      <Grid>
+        {data &&
+          data.map((el: any) => {
+            return (
+              <PreviewItem
+                key={el.product_id}
+                product_id={el.product_id}
+                user_id={el.user_id}
+                image_uri={el.image_uri}
+                title={el.title}
+                user_name={el.user_name}
+                town={el.town}
+                goal_num={el.goal_num}
+                state_num={el.state_num}
+                ended_time={el.ended_time}
+              />
+            );
+          })}
+      </Grid>
+    </Container>
+  );
+};
+
+export default ProceedList;

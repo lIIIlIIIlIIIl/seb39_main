@@ -18,26 +18,26 @@ const Grid = styled.div`
 `;
 
 const JoinedItems = () => {
-  const { authorization } = getCookie("userInfo");
+  // const { authorization } = getCookie("userInfo");
 
-  const { data, isLoading, isError } = useQuery(
-    ["endedList"],
-    async () => await myParticipateList(authorization).then(({ data }) => data)
-  );
+  // const { data, isLoading, isError } = useQuery(
+  //   ["endedList"],
+  //   async () => await myParticipateList(authorization).then(({ data }) => data)
+  // );
 
-  if (isLoading) {
-    return <h2>Loading...</h2>;
-  }
+  // if (isLoading) {
+  //   return <h2>Loading...</h2>;
+  // }
 
-  if (isError) {
-    return <h2>Error!</h2>;
-  }
+  // if (isError) {
+  //   return <h2>Error!</h2>;
+  // }
 
-  console.log(data.result);
   return (
     <Container>
-      {/* <Grid>
-        {data &&
+      <Grid>
+        <h3>참여한 공구가 없습니다.</h3>
+        {/* {data &&
           data.result.map((el: any) => {
             return (
               <PreviewItem
@@ -53,8 +53,8 @@ const JoinedItems = () => {
                 ended_time={el.endedTime}
               />
             );
-          })}
-      </Grid> */}
+          })} */}
+      </Grid>
     </Container>
   );
 };

@@ -296,19 +296,27 @@ const handlers = [
     return res(ctx.status(200));
   }),
 
-  rest.get("/:userid/:productid", (req, res, ctx) => {
-    const { userid, productid } = req.params;
-    console.log(userid, productid);
-    console.log("before", TotalData);
+  // rest.get("/:userid/:productid", (req, res, ctx) => {
+  //   const { userid, productid } = req.params;
+  //   console.log(userid, productid);
+  //   console.log("before", TotalData);
 
-    const data = TotalData.filter((el) => {
-      return (
-        Number(el.user_id) === Number(userid) &&
-        Number(el.product_id) === Number(productid)
-      );
-    });
-    console.log(data);
-    return res(ctx.status(200), ctx.json(data[0]));
+  //   const data = TotalData.filter((el) => {
+  //     return (
+  //       Number(el.user_id) === Number(userid) &&
+  //       Number(el.product_id) === Number(productid)
+  //     );
+  //   });
+  //   return res(ctx.status(200), ctx.json(data[0]));
+  // }),
+
+  rest.get("/user/:id", (req, res, ctx) => {
+    const { id } = req.params;
+    const myData = fullData.filter((data) => data.user_id === Number(id));
+
+    console.log(myData);
+
+    return res(ctx.status(200), ctx.json(myData));
   }),
 ];
 
