@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import axios from "axios";
-import { useState } from "react";
-import InfiniteScroll from "react-infinite-scroller";
-import { useInfiniteQuery, useMutation, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import styled from "styled-components";
 
 import PreviewItem from "./PreviewItem";
@@ -18,6 +16,7 @@ const Container = styled.section`
 `;
 
 const Grid = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-row-gap: 20px;

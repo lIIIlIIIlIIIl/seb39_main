@@ -17,19 +17,19 @@ const Container = styled.article`
     display: block;
   }
 
-  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
     flex-direction: column;
   }
 `;
 
 const ThumbnailBox = styled.div`
   overflow: hidden;
-  border: 1px solid ${props => props.theme.colors.black200};
+  border: 1px solid ${(props) => props.theme.colors.black200};
   width: 30%;
   min-width: 10rem;
   height: 8rem;
 
-  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
     width: 100%;
     height: 14rem;
   }
@@ -59,8 +59,8 @@ const TitleUserBox = styled.div`
 `;
 
 const Title = styled.header`
-  color: ${props => props.theme.colors.black000};
-  font-size: ${props => props.theme.fontSize.size18};
+  color: ${(props) => props.theme.colors.black000};
+  font-size: ${(props) => props.theme.fontSize.size18};
   font-weight: 700;
   line-height: 1.5em;
   display: -webkit-box;
@@ -70,14 +70,14 @@ const Title = styled.header`
 `;
 
 const UserInfo = styled.div`
-  font-size: ${props => props.theme.fontSize.size12};
-  color: ${props => props.theme.colors.black500};
+  font-size: ${(props) => props.theme.fontSize.size12};
+  color: ${(props) => props.theme.colors.black500};
 `;
 
 const GongguInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  color: ${props => props.theme.colors.black400};
+  color: ${(props) => props.theme.colors.black400};
   font-size: 13px;
   margin: 0.5em 0;
   font-weight: 700;
@@ -90,7 +90,7 @@ const PercentageBox = styled.div`
 
   .percentage {
     font-size: 15px;
-    color: ${props => props.theme.colors.cyan400};
+    color: ${(props) => props.theme.colors.cyan400};
   }
 `;
 

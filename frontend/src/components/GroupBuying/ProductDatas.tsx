@@ -127,7 +127,7 @@ const ProductDatas = () => {
                   town={el.town}
                   goal_num={el.goal_num}
                   state_num={el.state_num}
-                  ended_time={el.endedime}
+                  ended_time={el.ended_time}
                 />
               );
             });

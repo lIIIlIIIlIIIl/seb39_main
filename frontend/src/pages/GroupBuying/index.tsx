@@ -1,10 +1,8 @@
-import axios from "axios";
 import styled from "styled-components";
 
 import TopButton from "../../common/Button/TopButton";
 import GroupPageHeader from "../../components/GroupBuying/GroupPageHeader";
 import ProductDatas from "../../components/GroupBuying/ProductDatas";
-// import ProductList from "../../components/GroupBuying/ProductList";
 
 const PageContainer = styled.div`
   width: 100%;
