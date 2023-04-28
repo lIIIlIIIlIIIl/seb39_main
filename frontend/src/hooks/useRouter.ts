@@ -4,7 +4,7 @@ export const useRouter = () => {
   const router = useNavigate();
 
   return {
-    currentPath: window.location.pathname,
+    currentPath: window.location,
     routeTo: (path: string) => router(path),
     routeBack: () => router(-1),
   };

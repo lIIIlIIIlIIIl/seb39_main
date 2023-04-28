@@ -37,7 +37,7 @@ const Favorite = () => {
     <Page>
       <Container>
         <Title>관심목록</Title>
-        <PreviewList />
+        <PreviewList selected="" />
       </Container>
     </Page>
   );

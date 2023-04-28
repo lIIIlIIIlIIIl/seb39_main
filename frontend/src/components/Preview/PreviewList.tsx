@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { useRouter } from "../../hooks/useRouter";
 import PreviewItem from "./PreviewItem";
 
 const Container = styled.section`
@@ -35,46 +36,60 @@ const Grid = styled.div`
 `;
 
 type Props = {
-  selected?: string;
+  selected: string;
 };
 
 interface PageData {
-  userId: string;
-  userNickname: string;
-  profileImage_url: string;
+  base_price: number;
+  body: string;
   category: string;
-  title: string;
-  productImage: Blob;
-  unit: string;
-  unitPerPrice: string;
-  goalQuantity: string;
-  startTime: string;
-  endedTime: string;
-  town: string;
+  ended_time: string;
+  generated_time: string;
+  goal_num: number;
+  image_uri: string;
+  product_id: number;
+  profileImage_uri: string;
   region: string;
-  edit: string;
+  score: number;
+  stateQuantity: number;
+  state_num: number;
+  status: string;
+  title: string;
+  town: string;
+  unit: string;
+  user_id: number;
+  user_name: string;
 }
 
+const queryKey = "category";
+const queryFn = (selectCategory: string) => {
+  return axios.post(`/category`, { selectCategory }).then((res) => res.data);
+};
+
 const PreviewList = ({ selected }: Props) => {
-  const { data, isLoading, error } = useQuery(
-    "category",
-    async () => await axios.get("/category").then(({ data }) => data)
-  );
+  const [list, setList] = useState([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const getData = async (selected: string) => {
+    setIsLoading(true);
+    const data = await queryFn(selected);
+    setList((prev) => data);
+    console.log(data);
+    setIsLoading(false);
+  };
+  useEffect(() => {
+    getData(selected);
+  }, [selected]);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <h1>로딩중...</h1>;
   }
 
-  if (error) {
-    return <h1>Error</h1>;
-  }
-
-  console.log(data);
   return (
     <Container>
       <Grid>
-        {data &&
-          data.map((el: any) => {
+        {list &&
+          list.map((el: PageData) => {
             return (
               <PreviewItem
                 key={el.product_id}

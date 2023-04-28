@@ -256,16 +256,23 @@ const handlers = [
     return res(ctx.status(200), ctx.json(productData[0]));
   }),
 
-  rest.get("/category", (req, res, ctx) => {
-    console.log(categoryData);
-    return res(ctx.status(200), ctx.json(categoryData));
+  rest.post("/category", async (req, res, ctx) => {
+    const { selectCategory } = await req.json();
+    console.log(selectCategory);
+    if (selectCategory === "전체") {
+      return res(ctx.status(200), ctx.json(TotalData));
+    }
+
+    const filteredData = TotalData.filter(
+      (data) => data.category === selectCategory
+    );
+
+    return res(ctx.status(200), ctx.json(filteredData));
   }),
 
   rest.post("/new", async (req, res, ctx) => {
     const productInfo = await req.json();
     const productId = Math.floor(Math.random() * 10000000);
-
-    console.log();
 
     console.log("before", TotalData);
     const newProduct: Category = {

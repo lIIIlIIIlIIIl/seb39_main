@@ -54,10 +54,10 @@ const RightBtnBox = styled.div`
 
 interface Props {
   selected: string;
-  setSelected: React.Dispatch<React.SetStateAction<string>>;
+  changeSelect: (select: string) => void;
 }
 
-const CategoryFilter = ({ selected, setSelected }: Props) => {
+const CategoryFilter = ({ selected, changeSelect }: Props) => {
   const slideRef = useRef<HTMLDivElement>(null);
 
   const leftHandler = () => {
@@ -100,7 +100,7 @@ const CategoryFilter = ({ selected, setSelected }: Props) => {
             <CategoryButton
               key={index}
               className={selected === item.label ? "active" : ""}
-              onClick={() => setSelected(item.label)}
+              onClick={() => changeSelect(item.label)}
               label={item.label}
               icon={item.icon}
             />

@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import CategoryFilter from "../../components/Category/CategoryFilter";
 import PreviewList from "../../components/Preview/PreviewList";
+import { useRouter } from "../../hooks/useRouter";
 
 const Page = styled.div`
   width: 100%;
@@ -24,14 +26,22 @@ const Container = styled.div`
 `;
 
 const Category = () => {
-  const [selected, setSelected] = useState("");
-  console.log(selected);
+  const { select } = useParams();
+  const [selected, setSelected] = useState<string>(select ? select : "전체");
+  const { routeTo } = useRouter();
+
+  const changeSelect = (select: string) => {
+    setSelected(select);
+
+    if (select === "전체") return routeTo("/category");
+    return routeTo(`/category/${select}`);
+  };
 
   return (
     <Page>
       <Container>
-        <CategoryFilter selected={selected} setSelected={setSelected} />
-        <PreviewList selected={selected} />
+        <CategoryFilter selected={selected} changeSelect={changeSelect} />
+        <PreviewList selected={selected ? selected : ""} />
       </Container>
     </Page>
   );
