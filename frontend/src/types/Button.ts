@@ -26,6 +26,7 @@ export type OauthButtonType = {
   backgroundColor?: string;
   borderRadius?: string;
   children?: React.ReactNode;
+  name?: string;
 };
 
 export interface BorderButtonType {

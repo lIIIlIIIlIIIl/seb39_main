@@ -17,7 +17,7 @@ const OauthButton = styled.button<OauthButtonType>`
   align-items: center;
 `;
 
-const OauthButtonForm: React.FC<OauthButtonType> = ({ ...props }) => {
+const OauthButtonForm: React.FC<OauthButtonType> = ({ name, ...props }) => {
   return <OauthButton {...props}>{props.children}</OauthButton>;
 };
 

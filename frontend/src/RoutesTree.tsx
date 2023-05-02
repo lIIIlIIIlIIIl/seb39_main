@@ -2,6 +2,7 @@ import { lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Main from "./Main";
+import KaKaoOauth from "./pages/Oauth/KaKaoOauth";
 import ProtectedRoute from "./ProtectedRoute";
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
@@ -57,6 +58,7 @@ const RoutesTree = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/password" element={<Password />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/oauth/kakao" element={<KaKaoOauth />} />
       </Routes>
     </BrowserRouter>
   );
