@@ -2,6 +2,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 
+import { useAppSelector } from "../../../hooks/Redux";
 import PreviewItem from "../../Preview/PreviewItem";
 
 const Container = styled.section`
@@ -32,30 +33,13 @@ const Grid = styled.div`
   }
 `;
 
-// interface PageData {
-//   userId: string;
-//   userNickname: string;
-//   profileImage_url: string;
-//   category: string;
-//   title: string;
-//   productImage: Blob;
-//   unit: string;
-//   unitPerPrice: string;
-//   goalQuantity: string;
-//   startTime: string;
-//   endedTime: string;
-//   town: string;
-//   region: string;
-//   edit: string;
-// }
-
-const { userId } = JSON.parse(localStorage.getItem("user") as string);
-
 const queryKey = "proceedList";
-const queryFn = () => axios.get(`/user/${userId}`).then((res) => res.data);
+const queryFn = (userId: number) =>
+  axios.get(`/user/${userId}`).then((res) => res.data);
 
 const ProceedList = () => {
-  const { data, isLoading, error } = useQuery(queryKey, queryFn);
+  const { userId } = useAppSelector((state) => state.login);
+  const { data, isLoading, error } = useQuery(queryKey, () => queryFn(userId));
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -65,7 +49,6 @@ const ProceedList = () => {
     return <h1>Error</h1>;
   }
 
-  console.log(data);
   return (
     <Container>
       <Grid>

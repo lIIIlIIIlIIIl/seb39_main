@@ -202,8 +202,7 @@ const handlers = [
     const { email, nickName, password, region, town, profileUrl } =
       await req.json();
 
-    const randomID =
-      Date.now().toString(36) + Math.random().toString(36).slice(2);
+    const randomID = Math.floor(Math.random() * 1000000);
 
     const findUser = UserData.find((element) => element.email === email);
 
@@ -213,7 +212,7 @@ const handlers = [
 
     if (findUser === undefined) {
       UserData.push({
-        userId: randomID,
+        userId: Number(randomID),
         email,
         nickName,
         password,
@@ -303,25 +302,9 @@ const handlers = [
     return res(ctx.status(200));
   }),
 
-  // rest.get("/:userid/:productid", (req, res, ctx) => {
-  //   const { userid, productid } = req.params;
-  //   console.log(userid, productid);
-  //   console.log("before", TotalData);
-
-  //   const data = TotalData.filter((el) => {
-  //     return (
-  //       Number(el.user_id) === Number(userid) &&
-  //       Number(el.product_id) === Number(productid)
-  //     );
-  //   });
-  //   return res(ctx.status(200), ctx.json(data[0]));
-  // }),
-
   rest.get("/user/:id", (req, res, ctx) => {
     const { id } = req.params;
-    const myData = fullData.filter((data) => data.user_id === Number(id));
-
-    console.log(myData);
+    const myData = TotalData.filter((data) => data.user_id === Number(id));
 
     return res(ctx.status(200), ctx.json(myData));
   }),

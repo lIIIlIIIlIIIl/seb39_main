@@ -1,6 +1,6 @@
 export const UserData = [
   {
-    userId: "1",
+    userId: 1,
     email: "test@naver.com",
     password: "123123",
     nickName: "테스트",
@@ -9,7 +9,7 @@ export const UserData = [
     profileUrl: "https://source.unsplash.com/80x80/?cat",
   },
   {
-    userId: "2",
+    userId: 2,
     email: "test1@naver.com",
     password: "123123",
     nickName: "테스트1",
@@ -18,7 +18,7 @@ export const UserData = [
     profileUrl: "https://source.unsplash.com/80x80/?cat",
   },
   {
-    userId: "3",
+    userId: 3,
     email: "test2@naver.com",
     password: "123123",
     nickName: "테스트2",
@@ -29,6 +29,27 @@ export const UserData = [
 ];
 
 export const TotalData = [
+  {
+    user_id: 2772614903,
+    user_name: "동재",
+    score: 4.0,
+    profileImage_uri:
+      "http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg",
+    product_id: 1000,
+    town: "강남구",
+    goal_num: 30,
+    state_num: 15,
+    image_uri:
+      "https://cdn.pixabay.com/photo/2018/10/03/22/08/kohl-3722517__480.jpg",
+    goal_price: 100000,
+    state_price: 50000,
+    category: "식품",
+    title: "유기농 양배추 함께 구매하실 분~~",
+    body: "유기농 양배추 입니다. 함께 구매하실 분 참여하세요~",
+    generated_time: "2023-04-03",
+    ended_time: "2023-05-27",
+    status: "PROCEED",
+  },
   {
     user_id: 123,
     user_name: "홍길동친구",
