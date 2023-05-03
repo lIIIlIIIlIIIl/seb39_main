@@ -7,7 +7,7 @@ import { HiOutlineHeart } from "@react-icons/all-files/hi/HiOutlineHeart";
 import { useRef } from "react";
 import styled from "styled-components";
 
-import { useAppDispatch } from "../../../../hooks/Redux/index";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/Redux/index";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import { useRouter } from "../../../../hooks/useRouter";
 import { loginActions } from "../../../../redux/loginSlice";
@@ -80,9 +80,7 @@ const NavDropDown = ({ className }: Props) => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const [isActive, setIsActive] = useOutsideClick(dropDownRef, btnRef, false);
   const { routeTo } = useRouter();
-
-  //임시 프로필 이미지
-  const image_uri = "https://source.unsplash.com/80x80/?cat";
+  const image_uri = useAppSelector((state) => state.login.profileImage_uri);
 
   const dispatch = useAppDispatch();
 

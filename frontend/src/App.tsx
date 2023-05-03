@@ -10,10 +10,13 @@ const App = () => {
   const userInfo = localStorage.getItem("user");
 
   if (!userInfo) {
+    dispatch(loginActions.deleteUserInfo());
     dispatch(loginActions.logout());
   }
 
   if (userInfo) {
+    const user = JSON.parse(userInfo);
+    dispatch(loginActions.setUserInfo(user));
     dispatch(loginActions.login());
   }
 

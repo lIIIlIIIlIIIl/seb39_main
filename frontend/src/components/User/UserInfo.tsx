@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { useAppSelector } from "../../hooks/Redux";
+
 const Container = styled.div`
   margin: 4em 0;
 `;
@@ -36,8 +38,8 @@ const NameBox = styled.div`
 `;
 
 const UserInfo = () => {
-  const { userNickname, profileImage_uri } = JSON.parse(
-    localStorage.getItem("user") as string
+  const { userNickname, profileImage_uri } = useAppSelector(
+    (state) => state.login
   );
 
   return (
