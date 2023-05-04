@@ -8,6 +8,12 @@ interface LoginState {
   userNickname: string;
 }
 
+export interface UserInfo {
+  profileImage_uri: string;
+  userId: number;
+  userNickname: string;
+}
+
 const initialState: LoginState = {
   isLogin: false,
   profileImage_uri: "",
@@ -25,7 +31,7 @@ const loginSlice = createSlice({
     logout(state) {
       state.isLogin = false;
     },
-    setUserInfo(state, action: PayloadAction<LoginState>) {
+    setUserInfo(state, action: PayloadAction<UserInfo>) {
       state.profileImage_uri = action.payload.profileImage_uri;
       state.userId = action.payload.userId;
       state.userNickname = action.payload.userNickname;
