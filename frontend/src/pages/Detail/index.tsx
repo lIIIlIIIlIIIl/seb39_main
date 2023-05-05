@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import { useAppSelector } from "../../hooks/Redux";
 import Participant from "./Participant";
 import Publisher from "./Publisher";
 
@@ -25,15 +26,16 @@ const Container = styled.div`
 
 const Detail = () => {
   const { product_id, user_id } = useParams();
-  const user = JSON.parse(localStorage.getItem("user") as string);
+  const user = useAppSelector((state) => state.login);
 
   const { data } = useQuery(
     [product_id],
     async () =>
-      await axios(`/${user_id}/${product_id}`).then(({ data }) => data)
+      await axios
+        .get(`/product/${user_id}/${product_id}`)
+        .then(({ data }) => data)
   );
 
-  console.log(user.userId === user_id ? "my" : "no");
   if (!user) {
     return (
       <Page>
@@ -57,7 +59,7 @@ const Detail = () => {
               generated_time={data.generated_time}
               ended_time={data.ended_time}
               status={data.status}
-              base_price={data.base_price}
+              base_price={data.state_price}
               enteredUser={data.enteredUser}
             />
           )}
@@ -74,7 +76,7 @@ const Detail = () => {
 
     <Page>
       <Container>
-        {data && user.userId === user_id ? (
+        {data && user.userId === Number(user_id) ? (
           <Publisher
             user_id={data.user_id}
             user_name={data.user_name}
@@ -93,7 +95,7 @@ const Detail = () => {
             generated_time={data.generated_time}
             ended_time={data.ended_time}
             status={data.state}
-            base_price={data.base_price}
+            base_price={data.state_price}
             enteredUser={data.enteredUser}
           />
         ) : (
@@ -116,7 +118,7 @@ const Detail = () => {
               generated_time={data.generated_time}
               ended_time={data.ended_time}
               status={data.status}
-              base_price={data.base_price}
+              base_price={data.state_price}
             />
           )
         )}

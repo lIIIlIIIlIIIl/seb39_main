@@ -13,26 +13,26 @@ const SubInfo = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
     flex-direction: column;
   }
 `;
 
 const Block = styled.div`
   margin-bottom: 3em;
-  font-size: ${props => props.theme.fontSize.size15};
+  font-size: ${(props) => props.theme.fontSize.size15};
 `;
 
 const Title = styled.div`
   font-size: 12px;
-  color: ${props => props.theme.colors.black400};
+  color: ${(props) => props.theme.colors.black400};
 `;
 
 const Contents = styled.div`
   padding: 0.5em 0;
 
   .strong {
-    font-size: ${props => props.theme.fontSize.size32};
+    font-size: ${(props) => props.theme.fontSize.size32};
   }
 `;
 
@@ -58,7 +58,7 @@ const DetailStats = ({
   goal_num,
   state_num,
   goal_price,
-  generated_time, // 안들어옴
+  generated_time,
 }: Props) => {
   const generatedDate = new Date(+new Date(generated_time) + 3240 * 10000)
     .toISOString()

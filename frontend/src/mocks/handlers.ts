@@ -228,16 +228,15 @@ const handlers = [
   rest.get("/product/:userid/:productid", (req, res, ctx) => {
     const { userid, productid } = req.params;
 
-    fullData.map((data) => {
+    const filterData = TotalData.filter((data) => {
       if (
         data.user_id === Number(userid) &&
         data.product_id === Number(productid)
       ) {
-        productData[0] = data;
+        return data;
       }
     });
-    console.log(productData[0]);
-    return res(ctx.status(200), ctx.json(productData[0]));
+    return res(ctx.status(200), ctx.json(filterData[0]));
   }),
 
   rest.get("/participate/:user_id/:product_id", async (req, res, ctx) => {
