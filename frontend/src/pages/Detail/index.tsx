@@ -94,7 +94,7 @@ const Detail = () => {
             body={data.body}
             generated_time={data.generated_time}
             ended_time={data.ended_time}
-            status={data.state}
+            status={data.status}
             base_price={data.state_price}
             enteredUser={data.enteredUser}
           />

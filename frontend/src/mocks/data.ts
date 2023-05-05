@@ -30,6 +30,26 @@ export const UserData = [
 
 export const TotalData = [
   {
+    user_id: 1,
+    user_name: "test",
+    score: 4.0,
+    profileImage_uri: "https://source.unsplash.com/80x80/?cat",
+    product_id: 1110,
+    town: "강남구",
+    goal_num: 20,
+    state_num: 7,
+    image_uri:
+      "https://images.pexels.com/photos/1795567/pexels-photo-1795567.jpeg",
+    goal_price: 100000,
+    state_price: 50000,
+    title: "시리얼",
+    body: "시리얼 대량 구매하실 분",
+    category: "식품",
+    generated_time: "2023-04-03",
+    ended_time: "2023-06-27",
+    status: "PROCEED",
+  },
+  {
     user_id: 2772614903,
     user_name: "동재",
     score: 4.0,

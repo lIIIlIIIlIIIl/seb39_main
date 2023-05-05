@@ -115,6 +115,7 @@ const Publisher = ({
 }: DetailType) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   const goal_price = goal_num * base_price;
 
   const deleteModalHandler = () => {

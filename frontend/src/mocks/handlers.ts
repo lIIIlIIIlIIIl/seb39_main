@@ -272,7 +272,6 @@ const handlers = [
     const productInfo = await req.json();
     const productId = Math.floor(Math.random() * 10000000);
 
-    console.log("before", TotalData);
     const newProduct: Category = {
       product_id: productId,
       user_id: productInfo.userId,
@@ -306,6 +305,20 @@ const handlers = [
     const myData = TotalData.filter((data) => data.user_id === Number(id));
 
     return res(ctx.status(200), ctx.json(myData));
+  }),
+
+  rest.post("/delete/post", async (req, res, ctx) => {
+    const { userId, product_id } = await req.json();
+    const isUser = UserData.find((el) => el.userId === userId) || false;
+
+    if (isUser) {
+      const findPost = TotalData.findIndex(
+        (el) => el.product_id === product_id
+      );
+      delete TotalData[findPost];
+    }
+
+    return res(ctx.status(200), ctx.json("success"));
   }),
 ];
 
