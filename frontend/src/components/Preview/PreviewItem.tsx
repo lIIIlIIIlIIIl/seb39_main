@@ -111,12 +111,7 @@ const PreviewItem = ({
   goal_num,
   state_num,
   ended_time,
-  ...props
 }: Preview) => {
-  const onClickHandler = () => {
-    console.log(user_id, product_id);
-  };
-
   const getParametersForUnsplash = ({
     width,
     height,
@@ -128,7 +123,7 @@ const PreviewItem = ({
 
   return (
     <Link to={`/${user_id}/${product_id}`}>
-      <Container onClick={onClickHandler}>
+      <Container>
         <ThumbnailBox>
           <Thumbnail
             src={

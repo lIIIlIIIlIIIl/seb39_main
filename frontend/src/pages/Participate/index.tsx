@@ -29,8 +29,6 @@ const Participate = () => {
       await axios(`/${user_id}/${product_id}`).then(({ data }) => data)
   );
 
-  console.log(data);
-
   return (
     <Container>
       <ParticipateContainer>

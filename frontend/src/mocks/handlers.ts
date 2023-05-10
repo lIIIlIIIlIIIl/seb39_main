@@ -250,13 +250,11 @@ const handlers = [
         productData[0] = data;
       }
     });
-    console.log(productData[0]);
     return res(ctx.status(200), ctx.json(productData[0]));
   }),
 
   rest.post("/category", async (req, res, ctx) => {
     const { selectCategory } = await req.json();
-    console.log(selectCategory);
     if (selectCategory === "전체") {
       return res(ctx.status(200), ctx.json(TotalData));
     }
@@ -295,7 +293,6 @@ const handlers = [
     };
     categoryData.unshift(newProduct);
     TotalData.push(newProduct);
-    console.log("after", TotalData);
 
     return res(ctx.status(200));
   }),

@@ -35,7 +35,7 @@ const ButtonContent = styled.div`
 
 const WriteForm = () => {
   const editorRef = useRef<Editor>(null);
-  const { routeBack } = useRouter();
+  const { routeBack, routeTo } = useRouter();
 
   const date = new Date();
   const year = date.getFullYear();
@@ -79,11 +79,10 @@ const WriteForm = () => {
   };
 
   const writeButtonHandler = () => {
-    console.log("작성 버튼");
+    routeTo("/user");
   };
 
   const cancelButtonHandler = () => {
-    console.log("취소 버튼");
     routeBack();
   };
 

@@ -11,8 +11,10 @@ const App = () => {
 
   useEffect(() => {
     const localData = localStorage.getItem("user");
-    const userInfo = localData && JSON.parse(localData);
 
+    if (!localData) return;
+
+    const userInfo = localData && JSON.parse(localData);
     dispatch(loginActions.login());
     dispatch(loginActions.setUserInfo(userInfo));
   }, []);

@@ -7,6 +7,7 @@ import LabelInput from "../../common/Input/LabelInput";
 import { useAppDispatch } from "../../hooks/Redux";
 import { useRouter } from "../../hooks/useRouter";
 import { loginActions } from "../../redux/loginSlice";
+
 const Form = styled.form`
   width: 100%;
   padding: 1em;
@@ -36,10 +37,7 @@ const LoginForm = () => {
   const { routeTo } = useRouter();
   const dispatch = useAppDispatch();
   const location = useLocation();
-  console.log(location);
   const from = location?.state?.from || "/";
-
-  console.log(from);
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

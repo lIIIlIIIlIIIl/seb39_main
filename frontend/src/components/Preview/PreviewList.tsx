@@ -74,7 +74,6 @@ const PreviewList = ({ selected }: Props) => {
     setIsLoading(true);
     const data = await queryFn(selected);
     setList((prev) => data);
-    console.log(data);
     setIsLoading(false);
   };
   useEffect(() => {

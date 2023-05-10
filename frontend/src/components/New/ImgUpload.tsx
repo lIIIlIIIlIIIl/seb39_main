@@ -48,7 +48,6 @@ const ImgUpload = ({ name }: PageProps) => {
 
   const onImgChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files;
-    console.log("file", file);
     if (!file) return;
     const url = URL.createObjectURL(file[0]);
     setFileImage(url);

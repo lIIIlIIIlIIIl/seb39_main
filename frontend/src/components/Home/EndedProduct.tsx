@@ -3,11 +3,10 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 
-import { endedProductList } from "../../config/API/api";
 import PreviewItem from "../Preview/PreviewItem";
 
 const Container = styled.div`
-  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -21,13 +20,13 @@ const Grid = styled.div`
   grid-row-gap: 20px;
   padding: 0 1em;
 
-  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 25px;
     grid-row-gap: 40px;
   }
 
-  @media (min-width: ${props => props.theme.breakPoints.desktop}) {
+  @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
     grid-template-columns: repeat(3, 1fr);
     padding: 0;
   }
@@ -38,13 +37,6 @@ const EndedProduct = () => {
     ["endedList"],
     async () => await axios.get("/popular").then(({ data }) => data)
   );
-
-  // const getData = async () => {
-  //   const response = await axios.get("/popular");
-  //   console.log(response.data);
-  // };
-
-  console.log(data);
 
   return (
     <Container>
